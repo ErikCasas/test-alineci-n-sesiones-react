@@ -16,9 +16,6 @@
 }
 
 
-
-
-
 .card {
   display: flex;
   justify-content: space-between;
@@ -46,3 +43,31 @@ section{
   flex-direction: column;
   height: min-content;
 }
+
+
+
+/* ---- */
+
+.card-red{
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  background-color: darkred;
+  border-radius: 12px;
+  width: 700px;
+  height: 200px;
+  margin-bottom: 15px;
+}
+
+.card-red>section>p{
+  color: whitesmoke
+
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
