@@ -1,20 +1,35 @@
+import { Card, CardBody, Heading, Image, Stack } from "@chakra-ui/react";
 import Button from "./Button";
 
-const Card = ({ price, stock, photoUrl, name }) => {
+const CardComponet = ({ price, stock, photoUrl, name }) => {
   {
     return (
       stock > 0 && (
-        <div className={stock<=5?"card-red":"card"}>
-          <img src={photoUrl} alt="product" className="product-img" />
-          <section>
-            <p>{name}</p>
-            {stock <= 5 && <p> Pocas unidades!!</p>}
-            <p>${price}</p>
-          </section>
-          <Button stock={stock} name={name} />
-        </div>
+        <Card
+          direction={{ base: "column", sm: "row" }}
+          overflow="hidden"
+          variant="elevated"
+          height="300px"
+          border={"2px"}
+          borderStyle={"solid"}
+          borderColor={"black"}
+        >
+          <Image
+            objectFit="contain"
+            maxW={{ base: "100%", sm: "200px" }}
+            src={photoUrl}
+          />
+          <Stack>
+            <CardBody>
+              <Heading size="md">{name}</Heading>
+              {stock <= 5 && <Heading> Pocas unidades!!</Heading>}
+              <Heading>${price}</Heading>
+              <Button stock={stock} name={name} />
+            </CardBody>
+          </Stack>
+        </Card>
       )
     );
   }
 };
-export default Card;
+export default CardComponet;

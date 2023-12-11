@@ -1,16 +1,25 @@
-const Button = ({ stock, name }) => {
+import { Button } from "@chakra-ui/react";
+
+const ButtonComponent = ({ stock, name }) => {
   if (stock <= 5) {
     return (
-      <button onClick={() => console.log(`haz comprado ${name}`)}>
+      <Button
+        colorScheme="red"
+        onClick={() => console.log(`haz comprado ${name}`)}
+      >
         Aprovechar!
-      </button>
+      </Button>
     );
   } else {
     return (
-      <button onClick={() => console.log(`haz comprado ${name}`)}>
+      <Button
+        colorScheme="facebook"
+        onClick={() => console.log(`haz comprado ${name}`)}
+      >
         Comprar!
-      </button>
+      </Button>
     );
   }
 };
-export default Button;
+
+export default ButtonComponent;
