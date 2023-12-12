@@ -1,6 +1,13 @@
 import { Button, Stack, useColorMode } from "@chakra-ui/react";
+import { useContext } from "react";
+// import MyContext from "../context/myContext";
 
 const Header = () => {
+
+// const valorDelContexto = useContext(MyContext)
+
+// console.log(valorDelContexto)
+
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Stack spacing={4} direction="row"  padding="12px">
