@@ -18,6 +18,16 @@ const ContextProvider = ({ children }) => {
           products: action.payload,
         };
 
+      case "ACTUALIZAR_STOCK": {
+        const index = state.products.findIndex((p) => p._id === action.payload.id);
+        const listProducts = state.products;
+        listProducts[index].stock = listProducts[index].stock - action.payload.quantity;
+        return {
+          ...state,
+          products: [...listProducts],
+        };
+      }
+
       default:
         return { ...state };
     }

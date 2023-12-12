@@ -3,9 +3,15 @@ import { useContext } from "react";
 import MyContext from "../context/myContext";
 
 const ButtonComponent = ({ id, stock, name, updateProduct, quantity }) => {
-
+  const { dispatch } = useContext(MyContext);
   const buyProduct = (id, name, quantity) => {
-    updateProduct(id, quantity);
+    dispatch({
+      type: "ACTUALIZAR_STOCK",
+      payload: {
+        id,
+        quantity,
+      },
+    });
     alert(`haz comprado ${quantity} ${name}`);
   };
 

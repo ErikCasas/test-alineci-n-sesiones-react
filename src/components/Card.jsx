@@ -7,10 +7,10 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import ButtonComponent from "./Button";
-import { useState } from "react";
+import useCounter from "../hooks/useCounter";
 
-const CardComponet = ({ price, stock, photoUrl, name, id, updateProduct }) => {
-  const [count, setCount] = useState(0);
+const CardComponet = ({ price, stock, photoUrl, name, id }) => {
+  const [count, sum, res] = useCounter();
   {
     return (
       stock > 0 && (
@@ -38,13 +38,12 @@ const CardComponet = ({ price, stock, photoUrl, name, id, updateProduct }) => {
               <ButtonComponent
                 stock={stock}
                 name={name}
-                updateProduct={updateProduct}
-                quantity = {count}
+                quantity={count}
                 id={id}
               />
 
-              <Button onClick={() => setCount(count + 1)}>+</Button>
-              <Button onClick={() => setCount(count - 1)}>-</Button>
+              <Button onClick={() => sum()}>+</Button>
+              <Button onClick={() => res()}>-</Button>
               <Heading>{count}</Heading>
             </CardBody>
           </Stack>

@@ -20,12 +20,7 @@ function App() {
 
 
   //quedá como parte del prroyecto integrador migrar esta lógica para realizarla desde el reducer
-  const updateProduct = (id, quantity) => {
-    const index = products.findIndex((p) => p._id === id);
-    const listProducts = products;
-    listProducts[index].stock = listProducts[index].stock - quantity;
-    setProducts([...listProducts]);
-  };
+
   return (
     <>
       <Header />
@@ -38,7 +33,6 @@ function App() {
             name={product.name}
             key={product._id}
             id={product._id}
-            updateProduct={updateProduct}
           />
         ))}
       </Grid>
