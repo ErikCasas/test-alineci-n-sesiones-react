@@ -31,9 +31,14 @@ const CardComponent = ({ price, stock, photoUrl, name, id }) => {
               <CardBody>
                 <Heading size="md">{name}</Heading>
                 <Heading>${price}</Heading>
-                <Heading  size="md" >Disponible {stock}</Heading>
+                <Heading size="md">Disponible {stock}</Heading>
 
-                {stock <= 5 && <Heading bgColor={"coral"} borderRadius={"10px"}> Pocas unidades!!</Heading>}
+                {stock <= 5 && (
+                  <Heading bgColor={"coral"} borderRadius={"10px"}>
+                    {" "}
+                    Pocas unidades!!
+                  </Heading>
+                )}
               </CardBody>
             </Stack>
           </Card>
