@@ -1,7 +1,16 @@
-import { Card, CardBody, Heading, Image, Stack } from "@chakra-ui/react";
-import Button from "./Button";
+import {
+  Button,
+  Card,
+  CardBody,
+  Heading,
+  Image,
+  Stack,
+} from "@chakra-ui/react";
+import ButtonComponent from "./Button";
+import { useState } from "react";
 
-const CardComponet = ({ price, stock, photoUrl, name }) => {
+const CardComponet = ({ price, stock, photoUrl, name, id, updateProduct }) => {
+  const [count, setCount] = useState(0);
   {
     return (
       stock > 0 && (
@@ -24,7 +33,19 @@ const CardComponet = ({ price, stock, photoUrl, name }) => {
               <Heading size="md">{name}</Heading>
               {stock <= 5 && <Heading> Pocas unidades!!</Heading>}
               <Heading>${price}</Heading>
-              <Button stock={stock} name={name} />
+              <Heading>Disponible {stock}</Heading>
+
+              <ButtonComponent
+                stock={stock}
+                name={name}
+                updateProduct={updateProduct}
+                quantity = {count}
+                id={id}
+              />
+
+              <Button onClick={() => setCount(count + 1)}>+</Button>
+              <Button onClick={() => setCount(count - 1)}>-</Button>
+              <Heading>{count}</Heading>
             </CardBody>
           </Stack>
         </Card>
