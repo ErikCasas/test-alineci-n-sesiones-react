@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import { useContext } from "react";
 import MyContext from "../context/myContext";
 
-const ButtonComponent = ({ id, stock, name, updateProduct, quantity }) => {
+const ButtonComponent = ({ id, stock, name, quantity }) => {
   const { dispatch } = useContext(MyContext);
   const buyProduct = (id, name, quantity) => {
     dispatch({

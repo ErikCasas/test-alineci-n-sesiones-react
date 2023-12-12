@@ -1,41 +1,21 @@
-import { Grid } from "@chakra-ui/react";
-import Card from "./components/Card";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import { useContext, useEffect } from "react";
-import MyContext from "./context/myContext";
+import Home from "./pages/Home";
+import ProductDetail from "./pages/ProductDetail";
+import Page404 from "./pages/Page404";
+import About from "./pages/About";
 function App() {
-  const { state, dispatch } = useContext(MyContext);
-  //useEffect para hacer la suscripción inicial
-  useEffect(() => {
-    fetch("http://localhost:8080/api/products")
-      .then((res) => res.json())
-      .then(({ products }) => dispatch({ type: "LLENAR", payload: products }));
-  }, []);
-
-  useEffect(() => {
-    console.log(
-      "Se debe realizar una petición para actualizar los productos en la base de datos"
-    );
-  }, [state.products]);
-
-
-  //quedá como parte del prroyecto integrador migrar esta lógica para realizarla desde el reducer
-
   return (
     <>
-      <Header />
-      <Grid templateColumns="repeat(2, 1fr)" gap={"15px"} margin={"55px"}>
-        {state?.products.map((product) => (
-          <Card
-            price={product.price}
-            photoUrl={product.photoUrl}
-            stock={product.stock}
-            name={product.name}
-            key={product._id}
-            id={product._id}
-          />
-        ))}
-      </Grid>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="" element={<Home />} />
+          <Route path="/products/:idProduct" element={<ProductDetail />} />
+          <Route path="/AboutUs" element={<About />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

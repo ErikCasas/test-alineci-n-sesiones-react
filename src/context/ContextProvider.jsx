@@ -1,14 +1,6 @@
 import { useReducer } from "react";
 import MyContext from "./myContext";
-//                     Explicar que la prop children nos permite crear componentes que abrazen
 const ContextProvider = ({ children }) => {
-  //ejemplo para useContext
-  //   const valoresDeEjmplo = {
-  //     nombre: "Erik",
-  //     edad: 21,
-  //     rol: "Admin",
-  //   };
-
   const reducer = (state, action) => {
     switch (action.type) {
       // nombre provisional para dar un mejor ejemplo
@@ -19,12 +11,22 @@ const ContextProvider = ({ children }) => {
         };
 
       case "ACTUALIZAR_STOCK": {
-        const index = state.products.findIndex((p) => p._id === action.payload.id);
+        const index = state.products.findIndex(
+          (p) => p._id === action.payload.id
+        );
         const listProducts = state.products;
-        listProducts[index].stock = listProducts[index].stock - action.payload.quantity;
+        listProducts[index].stock =
+          listProducts[index].stock - action.payload.quantity;
         return {
           ...state,
           products: [...listProducts],
+        };
+      }
+
+      case "PRODUCT_DETAIL": {
+        return {
+          ...state,
+          productDetail: action.payload,
         };
       }
 
