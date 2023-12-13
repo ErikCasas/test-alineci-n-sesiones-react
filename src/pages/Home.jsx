@@ -12,11 +12,7 @@ const Home = () => {
       .then(({ products }) => dispatch({ type: "LLENAR", payload: products }));
   }, []);
 
-  useEffect(() => {
-    console.log(
-      "Se debe realizar una petición para actualizar los productos en la base de datos"
-    );
-  }, [state.products]);
+
   return (
     <Grid templateColumns="repeat(2, 1fr)" gap={"15px"} margin={"55px"}>
       {state?.products.map((product) => (

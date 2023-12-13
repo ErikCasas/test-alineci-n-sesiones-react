@@ -32,7 +32,19 @@ const ProductDetail = () => {
       );
   }, []);
 
-  console.log(state);
+  //-------------------------------------------------------------
+  const handleDelteButton = async () => {
+    try {
+      await fetch(`http://localhost:8080/api/products/${idProduct}`, {
+        method: "DELETE",
+      });
+      dispatch({ type: "DELETE_PRODUCT", payload: idProduct });
+      console.log("first");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //-------------------------------------------------------------
 
   return (
     <Box
@@ -57,18 +69,18 @@ const ProductDetail = () => {
             <Text color="blue.600" fontSize="2xl">
               ${state.productDetail?.price}
             </Text>
+            {/* ------------------------------------------- */}
+            {state.user.rol === "admin" && (
+              <Button colorScheme="red" onClick={handleDelteButton}>
+                Borrar Producto
+              </Button>
+            )}
+            {/* ------------------------------------------- */}
           </Stack>
         </CardBody>
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-
             <ButtonComponent
               stock={state.productDetail?.stock}
               name={state.productDetail?.name}

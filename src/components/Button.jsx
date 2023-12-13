@@ -4,20 +4,32 @@ import MyContext from "../context/myContext";
 
 const ButtonComponent = ({ id, stock, name, quantity }) => {
   const { dispatch } = useContext(MyContext);
-  const buyProduct = (id, name, quantity) => {
-    dispatch({
-      type: "ACTUALIZAR_STOCK",
-      payload: {
-        id,
-        quantity,
-      },
-    });
-    alert(`haz comprado ${quantity} ${name}`);
+
+  //-------------------------------------------------
+  const buyProduct = async (id, name, quantity) => {
+    try {
+      const data = { stock: stock - quantity }; //esto es debido a un error mio || se debe definir un endpoint para solo la "compra" de productos
+      await fetch(`http://localhost:8080/api/products/${id}`, {
+        headers: {
+          "Content-Type": "application/json", //recordar express.json
+        },
+        method: "PUT",
+        body: JSON.stringify(data),
+      });
+
+      dispatch({
+        type: "UPDATE_STOCK",
+        payload: {
+          id,
+          quantity,
+        },
+      });
+      alert(`haz comprado ${quantity} ${name}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  // const { rol } = useContext(MyContext); //ejemplo de useContext
-
-  // console.log(rol)
+  //-------------------------------------------------
 
   if (stock <= 5) {
     return (

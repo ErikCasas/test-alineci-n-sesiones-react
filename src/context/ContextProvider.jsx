@@ -10,7 +10,7 @@ const ContextProvider = ({ children }) => {
           products: action.payload,
         };
 
-      case "ACTUALIZAR_STOCK": {
+      case "UPDATE_STOCK": {
         const index = state.products.findIndex(
           (p) => p._id === action.payload.id
         );
@@ -29,6 +29,16 @@ const ContextProvider = ({ children }) => {
           productDetail: action.payload,
         };
       }
+      //-------------------------------------------------------------
+
+      case "DELETE_PRODUCT":
+        return {
+          ...state,
+          products: state.products.filter(
+            (product) => product.id !== action.payload
+          ),
+        };
+      //-------------------------------------------------------------
 
       default:
         return { ...state };
@@ -37,8 +47,8 @@ const ContextProvider = ({ children }) => {
 
   const estadoInicial = {
     //inicializar primero el estado vacío, luego con el usuario, para explicar porqué => ...state
-    usuario: {
-      nombre: "Erik",
+    user: {
+      name: "Erik",
       rol: "admin",
     },
     products: [],
