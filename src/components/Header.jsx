@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Stack spacing={4} direction="row"  padding="12px">
       <Button colorScheme="facebook">Inicio</Button>
-      <Button colorScheme="facebook">Perfil</Button>
+      <Button colorScheme="facebook">About</Button>
       <Button onClick={toggleColorMode}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
       </Button>
