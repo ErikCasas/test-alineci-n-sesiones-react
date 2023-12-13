@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import Page404 from "./pages/Page404";
 import About from "./pages/About";
+import FormCreateProduct from "./pages/FormCreateProduct";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="" element={<Home />} />
           <Route path="/products/:idProduct" element={<ProductDetail />} />
+          <Route path="/products/create" element={<FormCreateProduct />} />
           <Route path="/AboutUs" element={<About />} />
           <Route path="*" element={<Page404 />} />
         </Routes>

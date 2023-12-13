@@ -29,7 +29,7 @@ const ContextProvider = ({ children }) => {
           productDetail: action.payload,
         };
       }
-      //-------------------------------------------------------------
+  //-------------------------------------------------------------
 
       case "DELETE_PRODUCT":
         return {
@@ -38,7 +38,7 @@ const ContextProvider = ({ children }) => {
             (product) => product.id !== action.payload
           ),
         };
-      //-------------------------------------------------------------
+  //-------------------------------------------------------------
 
       default:
         return { ...state };
