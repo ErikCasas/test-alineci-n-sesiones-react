@@ -24,8 +24,8 @@ const FormCreateProduct = () => {
       error.description = "descripción invalida";
     }
 
+    //también se puede usar una expreción regular
     if (photoUrl.length <= 3) {
-      //también se puede usar una expreción regular
       error.photoUrl = "url invalida";
     }
     if (stock === 0) {
@@ -46,7 +46,6 @@ const FormCreateProduct = () => {
         });
       } catch (error) {}
     } else {
-      console.log("ASdasda");
       setErrors(error);
     }
   };
