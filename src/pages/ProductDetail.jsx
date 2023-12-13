@@ -15,9 +15,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 import ButtonComponent from "../components/Button";
+import useCounter from "../hooks/useCounter";
 
 const ProductDetail = () => {
-  const [count, setCount] = useState(0);
+  const [val, sum, res] = useCounter();
 
   const { idProduct } = useParams();
 
@@ -49,7 +50,7 @@ const ProductDetail = () => {
             objectFit="contain"
             maxW={{ base: "100%", sm: "200px" }}
             borderRadius="lg"
-            />
+          />
           <Stack mt="6" spacing="3">
             <Heading size="md">{state.productDetail?.name}</Heading>
             <Text>{state.productDetail?.description}</Text>
@@ -67,17 +68,17 @@ const ProductDetail = () => {
             <Button variant="ghost" colorScheme="blue">
               Add to cart
             </Button>
-            
-            <ButtonComponent
-                  stock={state.productDetail?.stock}
-                  name={state.productDetail?.name}
-                  quantity={count}
-                  id={state.productDetail?._id}
-                />
 
-                <Button onClick={() => setCount(count + 1)}>+</Button>
-                <Button onClick={() => setCount(count - 1)}>-</Button>
-                <Heading >{count}</Heading>
+            <ButtonComponent
+              stock={state.productDetail?.stock}
+              name={state.productDetail?.name}
+              quantity={val}
+              id={state.productDetail?._id}
+            />
+
+            <Button onClick={() => sum()}>+</Button>
+            <Button onClick={() => res()}>-</Button>
+            <Heading>{val}</Heading>
           </ButtonGroup>
         </CardFooter>
       </Card>
